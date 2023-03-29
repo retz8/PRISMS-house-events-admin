@@ -13,7 +13,10 @@ export default function SideBar() {
   const userContext = useContext(loggedInUserContext);
 
   const handleLogout = () => {
-    window.open("http://localhost:8080/auth/logout", "_self");
+    window.open(
+      "https://prisms-house-events-api.onrender.com/auth/logout",
+      "_self"
+    );
   };
 
   return (

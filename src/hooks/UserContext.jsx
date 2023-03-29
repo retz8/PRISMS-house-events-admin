@@ -9,7 +9,9 @@ export default function UserContext(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/auth/user", { withCredentials: true })
+      .get("https://prisms-house-events-api.onrender.com/auth/user", {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.data) {
           setUserObject(res.data);
