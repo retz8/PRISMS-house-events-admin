@@ -13,6 +13,7 @@ export default function UserContext(props) {
         withCredentials: true,
       })
       .then((res) => {
+        console.log(res);
         if (res.data) {
           setUserObject(res.data);
         }
