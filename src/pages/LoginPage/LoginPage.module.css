@@ -1,0 +1,37 @@
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.loginForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  flex-direction: column;
+  min-height: 40vw;
+}
+.loginTitle {
+  font-size: 30px;
+}
+.googleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 50px;
+  background: #548ef1;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.googleIcon {
+  font-size: 30px;
+  margin-right: 15px;
+}
+.loginText {
+  font-size: 20px;
+}

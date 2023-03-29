@@ -1,0 +1,202 @@
+.updateHouse {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  height: 100%;
+}
+.updateHouseTop {
+  height: 30px;
+  display: flex;
+}
+.updateHouseTitle {
+  font-size: 25px;
+  font-weight: bold;
+}
+.contentsContainer {
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+  margin-top: 15px;
+}
+.backButton {
+  color: black;
+  margin-right: 15px;
+  height: 25px;
+  width: 50px;
+  cursor: pointer;
+}
+.houseShow {
+  padding: 10px;
+  flex: 0.6;
+  background-color: white;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.houseUpdate {
+  flex: 1;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.7);
+  margin-left: 20px;
+  border-radius: 10px;
+}
+.houseUpdateTitle {
+  font-weight: 600;
+  font-size: 20px;
+}
+.houseUpdateForm {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+.houseUpdateItem {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+.houseUpdateItem > label {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.houseUpdateInput {
+  border: none;
+  width: 300px;
+  height: 30px;
+  border-bottom: 1px solid gray;
+}
+.houseUpdateButton {
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  background-color: darkred;
+  color: white;
+  font-weight: 600;
+  width: 150px;
+}
+.houseUpdatePointInput {
+  border: none;
+  width: 200px;
+  height: 30px;
+  border-bottom: 1px solid gray;
+}
+.houseShowTop {
+  display: flex;
+  align-items: center;
+}
+.houseShowImg {
+  width: 50%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.houseShowTopTitle {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+.houseShowName {
+  font-weight: 600;
+}
+.houseShowPoint {
+  font-weight: 300;
+  padding: 2px;
+}
+.houseShowBottom {
+}
+.houseBaseProfile {
+}
+.houseShowTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(179, 175, 175);
+  max-height: 20px;
+}
+.houseShowInfo {
+  display: flex;
+  align-items: center;
+  margin: 20px 0px;
+  color: rgb(97, 96, 96);
+}
+.houseShowIcon {
+  font-size: 20px !important;
+}
+.houseShowInfoTitle {
+  display: inline-block;
+  word-wrap: break-word;
+  width: 250px;
+  margin-left: 10px;
+}
+.membersContainer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+.houseMemberList {
+  display: flex;
+  flex-flow: column nowrap;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.memberContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.memberProfile {
+  display: flex;
+  align-items: center;
+}
+.houseMemberPic {
+  width: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.houseMemberText {
+  padding-top: 5px;
+  padding-left: 5px;
+}
+.houseMemberButton {
+  width: 40px;
+  background-color: darkred;
+  color: #fff;
+  border-radius: 30px;
+  font-size: 10px;
+}
+.houseMemberButton:hover {
+  background-color: white;
+  color: darkred;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.leadersUpdateContainer {
+  padding-top: 20px;
+}
+.membersUpdateContainer {
+  padding-top: 20px;
+}
+.houseUpdateRight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.houseUpdateUpload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.houseUpdateImg {
+  height: 200px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+.houseUpdateIcon {
+  cursor: pointer;
+  margin-right: 10px;
+}
+.crestUpdateContainer {
+  display: flex;
+  justify-content: center;
+}

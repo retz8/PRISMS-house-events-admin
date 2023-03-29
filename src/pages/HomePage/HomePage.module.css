@@ -1,0 +1,50 @@
+.homePage {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin: 20px;
+}
+
+.homePageTop {
+  display: flex;
+}
+.homePageTitle {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* -------------------------------------*/
+.contentsContainer {
+  height: calc(100vh - 180px);
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.descContainer {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+}
+.descIcon {
+}
+.descTitle {
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 10px;
+  color: black;
+}
+.descText {
+  font-size: 20px;
+  color: rgb(97, 96, 96);
+  padding-left: 10px;
+}
+
+.welcome {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

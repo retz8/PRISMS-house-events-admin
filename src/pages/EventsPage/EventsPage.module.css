@@ -1,0 +1,69 @@
+.eventsPage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 20px;
+}
+
+/* --------------------------------------------- */
+.eventsPageTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+}
+
+.eventsPageTopLeft {
+  display: flex;
+  align-items: center;
+}
+.eventsPageTitle {
+  font-size: 25px;
+  font-weight: bold;
+}
+.refreshIcon {
+  margin-left: 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.eventsPageTopRight {
+  display: flex;
+  align-items: center;
+}
+.createEventButton {
+  background-color: darkred;
+  color: #fff;
+  font-size: 15px;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.createEventButton:hover {
+  background-color: white;
+  color: darkred;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* --------------------------------------------- */
+.gridContainer {
+  background-color: white;
+  height: calc(100vh - 190px);
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.7);
+}
+
+.eventEdit {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #3bb077;
+  color: white;
+  cursor: pointer;
+  margin-right: 15px;
+}
+.eventDelete {
+  color: red;
+  cursor: point;
+}

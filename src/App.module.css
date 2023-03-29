@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.contentsContainer {
+  flex: 8;
+  min-height: calc(100vh - 100px);
+  background-color: wheat;
+  display: flex;
+}

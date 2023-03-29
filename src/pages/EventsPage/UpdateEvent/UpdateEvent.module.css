@@ -1,0 +1,357 @@
+.updateEvent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 100%;
+  margin: 20px;
+}
+
+/* ---------------------------------------------------- */
+.updateEventTop {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+  justify-content: space-between;
+}
+.updateEventPageTitle {
+  font-size: 25px;
+  font-weight: bold;
+}
+.backButton {
+  color: black;
+  margin-right: 10px;
+  height: 25px;
+  width: 50px;
+  cursor: pointer;
+}
+/* ---------------------------------------------------- */
+.updateEventBottom {
+  display: flex;
+}
+.formContainer {
+  width: 500px;
+}
+.updateEventForm {
+  min-width: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.textInput {
+  padding: 5px;
+  font-size: 15px;
+}
+
+.hostContainer {
+  height: 50px;
+  padding: 5px;
+  border: 1px solid gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hostSelectButton {
+  background-color: darkred;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.hostSelectButton:hover {
+  background-color: white;
+  color: darkred;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.hostTitle {
+  color: gray;
+}
+.hostList {
+  display: flex;
+  width: 300px;
+  max-width: 300px;
+  height: 50px;
+  font-size: 15px;
+  overflow-x: scroll;
+}
+.hostText {
+  padding: 5px;
+  text-overflow: ellipsis;
+  background-color: rgb(216, 212, 212);
+  border-radius: 10px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.tierContainer {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  border: 1px solid gray;
+}
+.tierContainerTitle {
+  font-weight: bold;
+  padding-right: 10px;
+}
+.tierLabel {
+  padding: 3px;
+}
+
+.thumbnailContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid gray;
+}
+.thumbnailUploadButton {
+  width: 50%;
+  height: 30px;
+  cursor: pointer;
+  margin: 10px;
+}
+.thumbnailImage {
+  width: 50%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  padding: 10px;
+}
+
+.datePickers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+}
+.datePickersComponent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+.dateLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.participantsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  height: 35px;
+}
+.participantsTitle {
+  padding-right: 10px;
+  font-weight: bold;
+}
+.signUpLink {
+  max-width: 150px;
+  overflow-x: auto;
+}
+.participantBox {
+  display: flex;
+}
+.participantsLargeBox {
+  display: flex;
+}
+.selectParticipantButton {
+  margin-left: 40px;
+  background-color: darkred;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.selectParticipantButton:hover {
+  background-color: white;
+  color: darkred;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.updateEventSubmitButton {
+  width: 300px;
+  background-color: green;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 20px;
+  height: 35px;
+  cursor: pointer;
+}
+.updateEventSubmitButton:hover {
+  background-color: white;
+  color: green;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------------------------------------- */
+.userSelectionBottom {
+  height: 276px;
+  max-height: 276px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.userSelectText {
+  padding-bottom: 2px;
+}
+
+.updateEventRight {
+  margin-left: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.updateEventRightTop {
+  height: 300px;
+  display: flex;
+}
+
+.userSelectionContainer {
+  flex: 1;
+  height: 300px;
+  border: 1px solid gray;
+  background-color: white;
+}
+.userSelectionTop {
+  height: 20px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+.hostConfirmButton {
+  background-color: darkred;
+  color: #fff;
+  font-size: 10px;
+  cursor: pointer;
+}
+.hostConfirmButton:hover {
+  background-color: white;
+  color: darkred;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.userSelectionTitle {
+  padding-left: 5px;
+  font-weight: bold;
+}
+.userSelectionContainerEmpty {
+  flex: 1;
+  height: 300px;
+  border: 1px solid gray;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adminNoteContainer {
+  flex: 1;
+  height: 300px;
+  border: 1px solid gray;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.adminNotesTextArea {
+  height: 250px;
+  max-height: 250px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 5px;
+  resize: none;
+}
+/* ------------------------------------------------- */
+.updateEventRightBottom {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: green;
+}
+.updateParticipantsTop {
+  flex: 1;
+  background-color: white;
+  border: 1px solid gray;
+}
+.updateParticipantsBottom {
+  flex: 1;
+  background-color: white;
+  border: 1px solid gray;
+}
+
+/* ----------------------------------------------------- */
+.housesContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid gray;
+  height: 100%;
+}
+
+.houseTop {
+  height: 35px;
+  background-color: #f4d3d8;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.postResultTitle {
+  padding: 10px;
+  font-weight: 900;
+}
+.houseButtons {
+  padding-right: 10px;
+}
+.houseButton {
+}
+.houseButton:hover {
+}
+
+.houseBottom {
+  flex: 1;
+  border: 1px solid black;
+  display: flex;
+}
+.houseContainer {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border: 0.5px solid gray;
+}
+.houseNameTitle {
+  font-weight: bold;
+}
+
+.crestImg {
+  height: 100px;
+  aspect-ratio: 2/3;
+}
+
+.pointInputContainer {
+  display: flex;
+  padding: 5px;
+}
+.pointInput {
+  width: 90%;
+  margin-left: 10px;
+}
+
+.membersContainer {
+  flex: 1;
+  border: 0.5px solid gray;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 200px;
+}

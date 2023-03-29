@@ -1,0 +1,156 @@
+.updateUser {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+/* --------------------------------------*/
+.updateUserTop {
+  display: flex;
+}
+.backButton {
+  color: black;
+  margin-right: 15px;
+  height: 25px;
+  width: 50px;
+  cursor: pointer;
+}
+.updateUserTitle {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* --------------------------------------*/
+.contentsContainer {
+  height: calc(100vh - 180px);
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+  margin-top: 15px;
+}
+.userShow {
+  padding: 20px;
+  width: 300px;
+  background-color: white;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+.userShowTop {
+  display: flex;
+  align-items: center;
+}
+.userShowImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.userShowTopTitle {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+.userShowName {
+  font-weight: 600;
+}
+.userShowRole {
+  font-weight: 300;
+}
+
+/* -----------------------------------*/
+.userShowBottom {
+  margin-top: 20px;
+}
+.userShowTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(179, 175, 175);
+}
+.userShowInfo {
+  display: flex;
+  align-items: center;
+  margin: 20px 0px;
+  color: rgb(97, 96, 96);
+}
+.userShowIcon {
+  font-size: 16px !important;
+}
+.userShowInfoTitle {
+  display: inline-block;
+  word-wrap: break-word;
+  width: 250px;
+  margin-left: 10px;
+}
+
+/* -----------------------------------*/
+.userUpdate {
+  flex: 1;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.7);
+  margin-left: 20px;
+  border-radius: 10px;
+}
+.userUpdateTitle {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.userUpdateForm {
+  display: flex;
+  margin-top: 20px;
+}
+
+.userUpdateRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.userUpdateItem {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+.userUpdateItem > label {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.userUpdateInput {
+  border: none;
+  width: 300px;
+  height: 30px;
+  border-bottom: 1px solid gray;
+}
+.userUpdateUpload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userUpdateImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+.profilePicUpdateContainer {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.userUpdateIcon {
+  cursor: pointer;
+  margin-right: 10px;
+}
+.userUpdateButton {
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  background-color: darkred;
+  color: white;
+  font-weight: 600;
+}

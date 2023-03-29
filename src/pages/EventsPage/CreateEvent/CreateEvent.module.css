@@ -1,0 +1,216 @@
+.createEvent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 100%;
+  margin: 20px;
+}
+
+.createEventTop {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+.backButton {
+  color: black;
+  margin-right: 10px;
+  height: 25px;
+  width: 50px;
+  cursor: pointer;
+}
+.createEventPageTitle {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* ------------------------------------------------------- */
+.createEventBottom {
+  display: flex;
+}
+
+.contentsContainer {
+  width: 500px;
+}
+
+.createEventForm {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.textInput {
+  padding: 5px;
+  font-size: 15px;
+}
+
+/* host */
+.hostContainer {
+  height: 50px;
+  padding: 5px;
+  border: 1px solid gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hostTitle {
+  color: gray;
+}
+.hostList {
+  display: flex;
+  width: 300px;
+  max-width: 300px;
+  height: 50px;
+  font-size: 15px;
+  overflow-x: scroll;
+}
+.hostText {
+  padding: 5px;
+  text-overflow: ellipsis;
+  background-color: rgb(216, 212, 212);
+  border-radius: 10px;
+  display: inline-block;
+  white-space: nowrap;
+}
+.hostSelectButton {
+  background-color: darkred;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.hostSelectButton:hover {
+  background-color: white;
+  color: darkred;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* tier */
+.tierContainer {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  border: 1px solid gray;
+}
+.tierContainerTitle {
+  font-weight: bold;
+  padding-right: 10px;
+}
+.tierLabel {
+  padding: 3px;
+}
+
+/* thumbnail */
+.thumbnailContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid gray;
+}
+.thumbnailUploadButton {
+  width: 50%;
+  height: 30px;
+  cursor: pointer;
+  margin: 10px;
+}
+.thumbnailImage {
+  width: 50%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  padding: 10px;
+}
+
+/* startDate, endDate */
+.datePickers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+}
+.datePickersComponent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+.dateLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* participants */
+.participantsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  height: 35px;
+}
+.participantsTitle {
+  padding-right: 10px;
+  font-weight: bold;
+}
+.signUpLink {
+  max-width: 150px;
+  overflow-x: auto;
+}
+
+.createEventSubmitButton {
+  background-color: darkred;
+  color: #fff;
+  font-size: 16px;
+  height: 35px;
+  cursor: pointer;
+}
+.createEventSubmitButton:hover {
+  background-color: white;
+  color: darkred;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------------------------------------- */
+.userSelectionContainer {
+  margin-left: 20px;
+  width: 250px;
+  height: 300px;
+  border: 1px solid gray;
+  background-color: white;
+}
+
+/* host selection */
+.userSelectionTop {
+  height: 20px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+.userSelectionTitle {
+  padding-left: 5px;
+  font-weight: bold;
+}
+.hostConfirmButton {
+  background-color: darkred;
+  color: #fff;
+  font-size: 10px;
+  cursor: pointer;
+}
+.hostConfirmButton:hover {
+  background-color: white;
+  color: darkred;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* host selection: users */
+.userSelectionBottom {
+  height: 276px;
+  max-height: 276px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.userSelectText {
+  padding-bottom: 2px;
+}
