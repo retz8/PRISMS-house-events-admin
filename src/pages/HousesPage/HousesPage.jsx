@@ -22,9 +22,13 @@ export default function HousesPage() {
 
   return (
     <div className={styles.housesPage}>
-      {houses.map((house, index) => {
-        return <HouseCard key={index} house={house} />;
-      })}
+      {houses ? (
+        houses.map((house, index) => {
+          return <HouseCard key={index} house={house} />;
+        })
+      ) : (
+        <span>loading...</span>
+      )}
     </div>
   );
 }
