@@ -8,7 +8,11 @@ export default function HousesPage() {
 
   const fetchHouses = async () => {
     const { error, houses } = await getAllHouses();
-    if (error || houses.size > 4) return;
+    if (error || houses.size > 4) {
+      console.log(error);
+      return;
+    }
+    console.log(houses);
     setHouses(houses);
   };
 

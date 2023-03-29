@@ -5,8 +5,10 @@ import client from "./client";
 export const getAllHouses = async () => {
   try {
     const { data } = await client.get(`/house/houses`);
+    console.log(data);
     return data;
   } catch (error) {
+    console.log(error);
     const { response } = error;
     if (response?.data) {
       return response.data; // exact error status (400, 401, 500등) from backend
