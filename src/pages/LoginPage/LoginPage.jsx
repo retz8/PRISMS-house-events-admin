@@ -5,7 +5,7 @@ import styles from "./LoginPage.module.css";
 export default function LoginPage() {
   const googleLogin = () => {
     window.open(
-      "https://prisms-house-events-api.onrender.com/auth/google",
+      "https://prisms-house-events-api-production.up.railway.app/auth/google",
       "_self"
     );
   };

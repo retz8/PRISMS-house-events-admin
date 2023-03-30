@@ -51,16 +51,15 @@ export default function UsersPage() {
   };
 
   const handleUserDelete = async (id) => {
+    if (id === userContext._id) {
+      window.alert("Logged In User: Can't Delete");
+      return;
+    }
+    const confirmed = window.confirm(
+      "Are you sure? This will DELETE all of the events written by user"
+    );
+    if (!confirmed) return;
     try {
-      if (id === userContext._id) {
-        window.alert("Logged In User: Can't Delete");
-        return;
-      }
-      const confirmed = window.confirm(
-        "Are you sure? This will DELETE all of the events written by user"
-      );
-      if (!confirmed) return;
-
       await deleteUser(id);
       const newUsers = users.filter((p) => p.id !== id);
       setUsers(newUsers);

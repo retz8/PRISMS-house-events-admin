@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "https://prisms-house-events-api.onrender.com/api",
+  baseURL: "https://prisms-house-events-api-production.up.railway.app/api",
 });
 
 export default client;

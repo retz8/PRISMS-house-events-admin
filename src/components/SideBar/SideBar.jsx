@@ -14,7 +14,7 @@ export default function SideBar() {
 
   const handleLogout = () => {
     window.open(
-      "https://prisms-house-events-api.onrender.com/auth/logout",
+      "https://prisms-house-events-api-production.up.railway.app/auth/logout",
       "_self"
     );
   };

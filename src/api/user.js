@@ -27,6 +27,8 @@ export const getUser = async (userId) => {
 };
 
 export const deleteUser = async (userId) => {
+  console.log("DELETE");
+  console.log(userId);
   try {
     const { data } = await client.delete(`/user/delete/${userId}`);
     return data;
