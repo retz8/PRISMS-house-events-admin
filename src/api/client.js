@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: process.env.REACT_APP_API_URL + "/api",
+  baseURL: "https://prisms-house-events-api-production.up.railway.app/api",
 });
 
 export default client;
