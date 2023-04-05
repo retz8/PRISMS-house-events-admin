@@ -19,7 +19,7 @@ export default function TopBar() {
             src={
               userContext
                 ? userContext.profilePic.url
-                : process.env.REACT_APP_DEFAULT_PROFILE_PIC_URL
+                : "https://res.cloudinary.com/dlhqii3cq/image/upload/v1679707897/addwrt5d63jn8jnhkdqv.png"
             }
             alt="profilePic"
             className={styles.topAvatar}

@@ -19,8 +19,8 @@ const defaultEvent = {
   host: "", // default: logged in user
   tier: "",
   thumbnail: {
-    url: process.env.REACT_APP_DEFAULT_THUMBNAIL_URL,
-    public_id: process.env.REACT_APP_DEFAULT_THUMBNAIL_ID,
+    url: "https://res.cloudinary.com/dlhqii3cq/image/upload/v1679943792/logo_hnttot.png",
+    public_id: "logo_hnttot",
   },
   content: "",
   summary: "", // not included in the first version
