@@ -111,6 +111,7 @@ export default function UpdateEvent() {
 
     setCurEvent(event);
     setNewEvent(event);
+    setThumbnailObj({});
     setUsers(users);
     setHouses(houses);
   };
