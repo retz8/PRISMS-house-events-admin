@@ -12,6 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-quill/dist/quill.snow.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import styles from "./UpdateEvent.module.css";
+import { FlareSharp } from "@mui/icons-material";
 
 export default function UpdateEvent() {
   const navigate = useNavigate();
@@ -33,12 +34,12 @@ export default function UpdateEvent() {
   const [thumbnailURL, setThumbnailURL] = useState("");
   const [thumbnailObj, setThumbnailObj] = useState(null);
   const [content, setContent] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
   const [isForAll, setIsForAll] = useState(false);
   const [participants, setParticipants] = useState([]);
   const [adminNote, setAdminNote] = useState("");
-  const [points, setPoints] = useState([0, 0, 0, 0]); // = result ( 4 houses' points )
+  const [points, setPoints] = useState([]); // = result ( 4 houses' points )
   // ----------------------------------------------------------------
 
   // useEffect ------------------------------------------------------
@@ -103,6 +104,10 @@ export default function UpdateEvent() {
 
     // set admin note
     setAdminNote(event.adminNote ? event.adminNote : "");
+
+    // set date
+    setStartDate(new Date(event.startDate));
+    setEndDate(new Date(event.endDate));
 
     setCurEvent(event);
     setNewEvent(event);
@@ -193,7 +198,7 @@ export default function UpdateEvent() {
   const handlePointChange = ({ target }) => {
     const { value, id } = target;
     let tmpArr = [...points];
-    if (value === "") tmpArr[id] = 0;
+    if (value === "") tmpArr[id] = "";
     else tmpArr[id] = value;
     setPoints(tmpArr);
   };
@@ -257,9 +262,22 @@ export default function UpdateEvent() {
     }
 
     // points (result)
-    let housePointObj = { Albemarle: 0, Lambert: 0, Hobler: 0, Ettl: 0 };
+    let housePointObj = curEvent.result;
+    let pointDeductionObj = { Albemarle: 0, Lambert: 0, Ettl: 0, Hobler: 0 };
+
+    if (eventState === "Waiting Result") {
+      housePointObj = { Albemarle: 0, Lambert: 0, Ettl: 0, Hobler: 0 };
+    }
+
     houses.map((house, index) => {
-      housePointObj[house.name] = Number(points[index]);
+      pointDeductionObj[house.name] = Number(points[index])
+        ? Number(points[index]) - housePointObj[house.name]
+        : 0;
+    });
+    houses.map((house, index) => {
+      housePointObj[house.name] = Number(points[index])
+        ? Number(points[index])
+        : housePointObj[house.name];
     });
 
     // slug
@@ -268,33 +286,48 @@ export default function UpdateEvent() {
       .replace(/[^\w]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
-    // resultPosted Obj
-    // forceActive is not included in the first version
-    let resultPostedObj = {
-      active: false,
-      waitingResult: true,
-      forceActive: false,
-    };
+    // result Posted
+    let resultPostedObj = {};
+
     if (eventState === "Waiting Result") {
-      if (points.toString() !== [0, 0, 0, 0].toString()) {
-        // result point posted
-        console.log("checkehckehcked");
+      if (points?.length !== 0) {
         resultPostedObj = {
-          ...resultPostedObj,
           active: true,
           waitingResult: false,
+          forceActive: false,
           postedDate: new Date(),
+        };
+      } else {
+        resultPostedObj = {
+          active: false,
+          waitingResult: true,
+          forceActive: false,
         };
       }
     }
 
     if (eventState === "Result Posted") {
-      resultPostedObj = {
-        ...resultPostedObj,
-        active: true,
-        waitingResult: false,
-        postedDate: new Date(),
-      };
+      if (
+        pointDeductionObj.Albemarle !== 0 ||
+        pointDeductionObj.Lambert !== 0 ||
+        pointDeductionObj.Hobler !== 0 ||
+        pointDeductionObj.Ettl !== 0
+      ) {
+        // console.log("result posted again");
+        resultPostedObj = {
+          active: true,
+          waitingResult: false,
+          forceActive: false,
+          postedDate: new Date(),
+        };
+      } else {
+        resultPostedObj = {
+          active: true,
+          waitingResult: false,
+          forceActive: false,
+          postedDate: curEvent.resultPosted.postedDate,
+        };
+      }
     }
 
     if (eventState === "Past") {
@@ -306,6 +339,8 @@ export default function UpdateEvent() {
     let finalParticipants = participants.map((p) => {
       return p.split(",")[0];
     });
+
+    console.log(startDate);
 
     // final event object
     const finalEventObj = {
@@ -337,13 +372,15 @@ export default function UpdateEvent() {
       return;
     }
 
+    console.log("upadate poionts");
     // update house points
     houses.map(async (house, index) => {
       const houseId = house.id;
       const pointObj = {
-        point: points[index],
+        point: pointDeductionObj[house.name],
       };
       const { error, newHouse } = await updateHousePoint(houseId, pointObj);
+      console.log(newHouse);
       if (error) {
         // failed to update house points
         return;
@@ -631,7 +668,7 @@ export default function UpdateEvent() {
                           />
                           <div className={styles.pointInputContainer}>
                             <label htmlFor="point">Points</label>
-                            {eventState === "Result Posted" ? (
+                            {eventState === "Past" ? (
                               <input
                                 className={styles.pointInput}
                                 type="number"

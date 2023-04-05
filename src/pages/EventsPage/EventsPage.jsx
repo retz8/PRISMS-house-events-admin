@@ -45,14 +45,15 @@ export default function EventsPage() {
       } else {
         if (event.resultPosted.waitingResult === true) {
           return "Waiting Result";
-        } else if (event.resultPosted.active === true) {
-          return "Result Posted";
         } else {
-          return "Past";
+          if (event.resultPosted.active === true) {
+            return "Result Posted";
+          } else {
+            return "Past";
+          }
         }
       }
     });
-
     setEvents(events);
     setHousesName(housesNameObj);
     setHousesId(housesIdObj);
@@ -76,6 +77,7 @@ export default function EventsPage() {
     if (!confirmed) return;
     try {
       // id: eventId
+      console.log(`id: ${id}`);
       const { error, message } = await deleteEvent(id);
       if (error) {
         // failed to delete event
@@ -102,8 +104,6 @@ export default function EventsPage() {
 
       const newEvents = events.filter((p) => p.id !== id);
       setEvents(newEvents);
-
-      window.alert("Successfully removed event");
     } catch (error) {
       console.error(error.message);
     }
@@ -137,6 +137,7 @@ export default function EventsPage() {
       field: "startDate",
       headerName: "Start Date",
       flex: 1,
+      sortable: true,
       valueGetter: ({ value }) =>
         value &&
         new Date(value).toLocaleDateString("en-us", {
@@ -150,6 +151,7 @@ export default function EventsPage() {
       field: "endDate",
       headerName: "End Date",
       flex: 1,
+      sortable: true,
       valueGetter: ({ value }) =>
         value &&
         new Date(value).toLocaleDateString("en-us", {
@@ -185,6 +187,11 @@ export default function EventsPage() {
         );
       },
     },
+    {
+      field: "createdAt",
+      headerName: "CreatedAt",
+      sortable: true,
+    },
   ];
 
   const rows = events.map((event, index) => {
@@ -197,6 +204,7 @@ export default function EventsPage() {
       startDate: event.startDate,
       endDate: event.endDate,
       state: eventStates[index],
+      createdAt: event.createdAt,
     };
   });
   // --------------------------------------------------------------------------------
@@ -230,8 +238,13 @@ export default function EventsPage() {
       <div className={styles.gridContainer}>
         <DataGrid
           initialState={{
+            columns: {
+              columnVisibilityModel: {
+                createdAt: false,
+              },
+            },
             sorting: {
-              sortModel: [{ field: "state", sort: "asc" }],
+              sortModel: [{ field: "createdAt", sort: "asc" }],
             },
           }}
           rows={rows}

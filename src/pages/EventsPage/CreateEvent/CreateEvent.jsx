@@ -57,6 +57,8 @@ export default function CreateEvent() {
   const [endDate, setEndDate] = useState(defaultEvent.endDate);
   const [signUpLink, setSignUpLink] = useState("None");
   const [isForAll, setIsForAll] = useState(true);
+
+  const [creating, setCreating] = useState(false);
   // ---------------------------------------------------------
 
   // useEffect -----------------------------------------------
@@ -225,12 +227,14 @@ export default function CreateEvent() {
     console.log("Final Event: ");
     console.log(finalEventObj);
 
+    setCreating(true);
     const { error, event } = await createNewEvent(finalEventObj);
     if (error) {
       // failed to create new event [server]
       console.error(error);
       return;
     }
+    setCreating(false);
     window.alert("Event successfully created");
 
     return navigate("/events");
@@ -261,7 +265,7 @@ export default function CreateEvent() {
                     checkedHostsList.map((checkedHost) => {
                       return (
                         <div className={styles.hostText}>
-                          <span>{checkedHost.split(",")[1]},</span>
+                          <span>{checkedHost.split(",")[1]}</span>
                         </div>
                       );
                     })
@@ -411,13 +415,21 @@ export default function CreateEvent() {
                   )}
                 </div>
               </div>
-
-              <button
-                className={styles.createEventSubmitButton}
-                onClick={handleSubmit}
-              >
-                Create Event
-              </button>
+              {creating ? (
+                <button
+                  className={styles.createEventSubmitButton}
+                  onClick={handleSubmit}
+                >
+                  Creating...
+                </button>
+              ) : (
+                <button
+                  className={styles.createEventSubmitButton}
+                  onClick={handleSubmit}
+                >
+                  Create Event
+                </button>
+              )}
             </form>
           </div>
 

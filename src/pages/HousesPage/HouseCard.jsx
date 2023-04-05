@@ -90,9 +90,7 @@ export default function HouseCard({ house }) {
           <div className={styles.houseCardLeft}>
             <img src={house.crest} alt="" className={styles.houseCrest} />
             <div className={styles.leaderContainer}>
-              <span style={{ fontWeight: "bold", alignSelf: "center" }}>
-                House Leaders
-              </span>
+              <span className={styles.houseLeaderTitle}>House Leaders</span>
               <div className={styles.leaderField}>
                 <EmojiPeopleIcon className={styles.leaderIcon} />
                 {leader.faculty[0] ? (

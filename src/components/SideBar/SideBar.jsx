@@ -13,10 +13,7 @@ export default function SideBar() {
   const userContext = useContext(loggedInUserContext);
 
   const handleLogout = () => {
-    window.open(
-      "https://prisms-house-events-api-production.up.railway.app/auth/logout",
-      "_self"
-    );
+    window.open("http://localhost:8080/auth/logout", "_self");
   };
 
   return (

@@ -9,12 +9,9 @@ export default function UserContext(props) {
 
   useEffect(() => {
     axios
-      .get(
-        "https://prisms-house-events-api-production.up.railway.app/auth/user",
-        {
-          withCredentials: true,
-        }
-      )
+      .get("http://localhost:8080/auth/user", {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log(res);
         if (res.data) {

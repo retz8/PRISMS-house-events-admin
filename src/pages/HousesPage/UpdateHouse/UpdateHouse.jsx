@@ -23,8 +23,16 @@ const defaultHouse = {
   color: "",
 };
 const defaultLeaders = {
-  faculty: { 0: { displayName: "None" } },
-  student: { 0: { displayName: "None" } },
+  faculty: {
+    0: {
+      displayName: "None",
+    },
+  },
+  student: {
+    0: {
+      displayName: "None",
+    },
+  },
 };
 
 export default function UpdateHouse() {
@@ -36,8 +44,8 @@ export default function UpdateHouse() {
   const [newHouse, setNewHouse] = useState(defaultHouse);
   const [members, setMembers] = useState([]);
   const [leaders, setLeaders] = useState(defaultLeaders);
-  const [newCrestObj, setNewCrestObj] = useState({});
-  const [newCrestURL, setNewCrestURL] = useState(house.crest);
+  const [newCrestObj, setNewCrestObj] = useState(null);
+  const [newCrestURL, setNewCrestURL] = useState();
 
   // useEffect ---------------------------------------
   const fetchHouseInfo = async () => {
@@ -101,10 +109,12 @@ export default function UpdateHouse() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const { name, point, crest, motto, enMotto, color } = newHouse;
 
     let newCrest = crest;
+    console.log("newCrestOBj");
+    console.log(newCrestObj);
+
     if (newCrestObj) {
       const formData = new FormData();
       formData.set("image", newCrestObj);
@@ -117,7 +127,7 @@ export default function UpdateHouse() {
       newCrest = { url: image, public_id };
     }
 
-    const newPoint = point.toString();
+    const newPoint = Number(point);
 
     const finalHouse = {
       name,
@@ -127,7 +137,7 @@ export default function UpdateHouse() {
       color,
     };
 
-    finalHouse.house = newHouse;
+    finalHouse.crest = newCrest;
 
     console.log("Submit");
     console.log(finalHouse);
@@ -144,11 +154,11 @@ export default function UpdateHouse() {
     setNewCrestURL(house.crest?.url);
   };
 
-  const { name, point, motto, enMotto, color } = newHouse;
+  // const { name, point, motto, enMotto, color } = newHouse;
 
   return (
     <div className={styles.updateHouse}>
-      {house && members && leaders ? (
+      {house && leaders ? (
         <div>
           <div className={styles.updateHouseTop}>
             <Link to="/houses">
@@ -228,7 +238,7 @@ export default function UpdateHouse() {
                   <div className={styles.houseUpdateItem}>
                     <label>Name</label>
                     <input
-                      value={name}
+                      value={newHouse.name}
                       type="text"
                       id="name"
                       onChange={handleChange}
@@ -240,7 +250,7 @@ export default function UpdateHouse() {
                     <label>Point</label>
                     <div>
                       <input
-                        value={point}
+                        value={newHouse.point}
                         type="number"
                         id="point"
                         onChange={handleChange}
@@ -252,7 +262,7 @@ export default function UpdateHouse() {
                   <div className={styles.houseUpdateItem}>
                     <label>Color</label>
                     <input
-                      value={color}
+                      value={newHouse.color}
                       type="text"
                       id="color"
                       onChange={handleChange}
@@ -263,7 +273,7 @@ export default function UpdateHouse() {
                   <div className={styles.houseUpdateItem}>
                     <label>Motto</label>
                     <input
-                      value={motto}
+                      value={newHouse.motto}
                       type="text"
                       id="motto"
                       onChange={handleChange}
@@ -274,7 +284,7 @@ export default function UpdateHouse() {
                   <div className={styles.houseUpdateItem}>
                     <label>Motto (English)</label>
                     <input
-                      value={enMotto}
+                      value={newHouse.enMotto}
                       type="text"
                       id="enMotto"
                       onChange={handleChange}
@@ -316,109 +326,113 @@ export default function UpdateHouse() {
                 </div>
               </form>
             </div>
-            <div className={styles.houseUpdate}>
-              <span className={styles.houseUpdateTitle}>Edit Members</span>
-              <div className={styles.leadersUpdateContainer}>
-                <span style={{ fontWeight: "bold" }}>Leaders</span>
-                <div>
-                  <span className={styles.houseShowTitle}>Faculty</span>
-                  {leaders.faculty[0] ? (
-                    <div className={styles.memberContainer}>
-                      <div className={styles.memberProfile}>
-                        {leaders.faculty[0].profilePic?.url ? (
-                          <img
-                            className={styles.houseMemberPic}
-                            src={leaders.faculty[0].profilePic.url}
-                            alt=""
-                          />
-                        ) : (
-                          <></>
-                        )}
-                        <span className={styles.houseMemberText}>
-                          {leaders.faculty[0].displayName}
-                        </span>
-                      </div>
-                      <Link to={"/update-user/" + leaders.faculty[0]._id}>
-                        <button className={styles.houseMemberButton}>
-                          Edit
-                        </button>
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className={styles.memberContainer}>
-                      <span>None</span>
-                    </div>
-                  )}
-                </div>
-                <div>
-                  <span className={styles.houseShowTitle}>Student</span>
-                  {leaders.student[0] ? (
-                    <div className={styles.memberContainer}>
-                      <div className={styles.memberProfile}>
-                        {leaders.faculty[0].profilePic?.url ? (
-                          <img
-                            className={styles.houseMemberPic}
-                            src={leaders.student[0].profilePic.url}
-                            alt=""
-                          />
-                        ) : (
-                          <></>
-                        )}
-                        <span className={styles.houseMemberText}>
-                          {leaders.student[0].displayName}
-                        </span>
-                      </div>
-                      <Link to={"/update-user/" + leaders.student[0]._id}>
-                        <button className={styles.houseMemberButton}>
-                          Edit
-                        </button>
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className={styles.memberContainer}>
-                      <span>None</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className={styles.membersUpdateContainer}>
-                <div className={styles.membersContainer}>
-                  <span style={{ fontWeight: "bold" }}>Members</span>
-                  <div className={styles.houseMemberList}>
-                    {members.map((member, index) => {
-                      return (
-                        <div key={index} className={styles.memberContainer}>
-                          <div className={styles.memberProfile}>
+            {members ? (
+              <div className={styles.houseUpdate}>
+                <span className={styles.houseUpdateTitle}>Edit Members</span>
+                <div className={styles.leadersUpdateContainer}>
+                  <span style={{ fontWeight: "bold" }}>Leaders</span>
+                  <div>
+                    <span className={styles.houseShowTitle}>Faculty</span>
+                    {leaders.faculty[0] ? (
+                      <div className={styles.memberContainer}>
+                        <div className={styles.memberProfile}>
+                          {leaders.faculty[0].profilePic?.url ? (
                             <img
                               className={styles.houseMemberPic}
-                              src={member.profilePic?.url}
+                              src={leaders.faculty[0].profilePic.url}
                               alt=""
                             />
-                            {member.role === "HouseLeader" ? (
-                              <span
-                                className={styles.houseMemberText}
-                                style={{ fontWeight: "bold" }}
-                              >
-                                {member.displayName}
-                              </span>
-                            ) : (
-                              <span className={styles.houseMemberText}>
-                                {member.displayName}
-                              </span>
-                            )}
-                          </div>
-                          <Link to={"/update-user/" + member.id}>
-                            <button className={styles.houseMemberButton}>
-                              Edit
-                            </button>
-                          </Link>
+                          ) : (
+                            <></>
+                          )}
+                          <span className={styles.houseMemberText}>
+                            {leaders.faculty[0].displayName}
+                          </span>
                         </div>
-                      );
-                    })}
+                        <Link to={"/update-user/" + leaders.faculty[0]._id}>
+                          <button className={styles.houseMemberButton}>
+                            Edit
+                          </button>
+                        </Link>
+                      </div>
+                    ) : (
+                      <div className={styles.memberContainer}>
+                        <span>None</span>
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <span className={styles.houseShowTitle}>Student</span>
+                    {leaders.student[0] ? (
+                      <div className={styles.memberContainer}>
+                        <div className={styles.memberProfile}>
+                          {leaders.student[0].profilePic?.url ? (
+                            <img
+                              className={styles.houseMemberPic}
+                              src={leaders.student[0].profilePic.url}
+                              alt=""
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          <span className={styles.houseMemberText}>
+                            {leaders.student[0].displayName}
+                          </span>
+                        </div>
+                        <Link to={"/update-user/" + leaders.student[0]._id}>
+                          <button className={styles.houseMemberButton}>
+                            Edit
+                          </button>
+                        </Link>
+                      </div>
+                    ) : (
+                      <div className={styles.memberContainer}>
+                        <span>None</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className={styles.membersUpdateContainer}>
+                  <div className={styles.membersContainer}>
+                    <span style={{ fontWeight: "bold" }}>Members</span>
+                    <div className={styles.houseMemberList}>
+                      {members.map((member, index) => {
+                        return (
+                          <div key={index} className={styles.memberContainer}>
+                            <div className={styles.memberProfile}>
+                              <img
+                                className={styles.houseMemberPic}
+                                src={member.profilePic?.url}
+                                alt=""
+                              />
+                              {member.role === "HouseLeader" ? (
+                                <span
+                                  className={styles.houseMemberText}
+                                  style={{ fontWeight: "bold" }}
+                                >
+                                  {member.displayName}
+                                </span>
+                              ) : (
+                                <span className={styles.houseMemberText}>
+                                  {member.displayName}
+                                </span>
+                              )}
+                            </div>
+                            <Link to={"/update-user/" + member.id}>
+                              <button className={styles.houseMemberButton}>
+                                Edit
+                              </button>
+                            </Link>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <span>Loading...</span>
+            )}
           </div>
         </div>
       ) : (

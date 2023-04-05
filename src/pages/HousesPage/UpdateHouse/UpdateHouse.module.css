@@ -89,7 +89,7 @@
 }
 .houseShowImg {
   width: 50%;
-  border-radius: 50%;
+  border-radius: 15px;
   object-fit: cover;
 }
 .houseShowTopTitle {
