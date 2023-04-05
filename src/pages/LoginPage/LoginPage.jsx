@@ -4,7 +4,10 @@ import styles from "./LoginPage.module.css";
 
 export default function LoginPage() {
   const googleLogin = () => {
-    window.open(process.env.REACT_APP_API_URL + "/auth/google", "_self");
+    window.open(
+      "https://prisms-house-events-api-production.up.railway.app/auth/google",
+      "_self"
+    );
   };
 
   return (
