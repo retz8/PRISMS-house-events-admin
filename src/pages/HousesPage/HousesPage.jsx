@@ -12,7 +12,6 @@ export default function HousesPage() {
       console.log(error);
       return;
     }
-    console.log(houses);
     setHouses(houses);
   };
 
