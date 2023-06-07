@@ -2,6 +2,7 @@ import client from "./client";
 
 export const uploadImage = async (formData) => {
   try {
+    console.log(formData);
     const { data } = await client.post(`/upload-image`, formData);
     return data;
   } catch (error) {

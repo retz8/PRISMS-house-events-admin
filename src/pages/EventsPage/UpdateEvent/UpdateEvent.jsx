@@ -341,8 +341,6 @@ export default function UpdateEvent() {
       return p.split(",")[0];
     });
 
-    console.log(startDate);
-
     // final event object
     const finalEventObj = {
       title: newEvent.title,
@@ -364,6 +362,7 @@ export default function UpdateEvent() {
 
     finalEventObj.thumbnail = newThumbnailObj;
 
+    console.log("submission");
     console.log(finalEventObj);
 
     const { error, event } = await updateEvent(eventId, finalEventObj);
@@ -373,7 +372,6 @@ export default function UpdateEvent() {
       return;
     }
 
-    console.log("upadate poionts");
     // update house points
     houses.map(async (house, index) => {
       const houseId = house.id;
@@ -381,14 +379,13 @@ export default function UpdateEvent() {
         point: pointDeductionObj[house.name],
       };
       const { error, newHouse } = await updateHousePoint(houseId, pointObj);
-      console.log(newHouse);
       if (error) {
         // failed to update house points
         return;
       }
     });
 
-    window.alert("Event Successfully Updated!");
+    window.alert("Event Successfully Updated! Redirecting to Events Page...");
     return navigate("/events");
   };
 
@@ -694,7 +691,7 @@ export default function UpdateEvent() {
                               />
                             )}
                           </div>
-                          {isForAll ? (
+                          {/* {isForAll ? (
                             <></>
                           ) : (
                             <div className={styles.membersContainer}>
@@ -716,7 +713,7 @@ export default function UpdateEvent() {
                                 );
                               })}
                             </div>
-                          )}
+                          )} */}
                         </div>
                       );
                     })

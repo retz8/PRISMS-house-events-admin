@@ -1,4 +1,4 @@
-.createEvent {
+.container {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -10,6 +10,10 @@
   display: flex;
   margin-bottom: 15px;
   align-items: center;
+}
+.createEventBottom {
+  display: flex;
+  flex-direction: row;
 }
 .backButton {
   color: black;
@@ -213,4 +217,19 @@
 }
 .userSelectText {
   padding-bottom: 2px;
+}
+
+.userSelectionInstruction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 250px;
+  height: 30px;
+  border: 1px solid gray;
+  background-color: white;
+}
+.userSelectionInstructionText {
+  padding-left: 5px;
+  font-weight: bold;
 }

@@ -19,8 +19,8 @@ const defaultEvent = {
   host: "", // default: logged in user
   tier: "",
   thumbnail: {
-    url: "https://res.cloudinary.com/dlhqii3cq/image/upload/v1679943792/logo_hnttot.png",
-    public_id: "logo_hnttot",
+    url: process.env.REACT_APP_DEFAULT_THUMBNAIL_URL,
+    public_id: process.env.REACT_APP_DEFAULT_THUMBNAIL_ID,
   },
   content: "",
   summary: "", // not included in the first version
@@ -87,6 +87,12 @@ export default function CreateEvent() {
   };
 
   const onClickHideHostSelect = () => {
+    if (checkedHostsList.length === 0) {
+      let defaultHost = userContext._id + "," + userContext.displayName;
+      console.log(defaultHost);
+      setCheckedHostsList([...checkedHostsList, defaultHost]);
+    }
+
     setIsHostSelecting(false);
     setHostConfirmed(true);
   };
@@ -241,234 +247,249 @@ export default function CreateEvent() {
   };
 
   return (
-    <div className={styles.createEvent}>
+    <div className={styles.container}>
       <div className={styles.createEventTop}>
         <ArrowBackIcon className={styles.backButton} onClick={goBack} />
         <span className={styles.createEventPageTitle}>Create New Event</span>
       </div>
-      {users ? (
-        <div className={styles.createEventBottom}>
-          <div className={styles.contentsContainer}>
-            <form className={styles.createEventForm}>
-              <input
-                className={styles.textInput}
-                type="text"
-                name="title"
-                value={title}
-                placeholder={"Title"}
-                onChange={handleChange}
-              />
-              <div className={styles.hostContainer}>
-                <span className={styles.hostTitle}>Host</span>
-                <div className={styles.hostList}>
-                  {checkedHostsList?.length ? (
-                    checkedHostsList.map((checkedHost) => {
-                      return (
-                        <div className={styles.hostText}>
-                          <span>{checkedHost.split(",")[1]}</span>
-                        </div>
-                      );
-                    })
+      <div className={styles.createEventBottom}>
+        {users ? (
+          <div className={styles.createEventBottom}>
+            <div className={styles.contentsContainer}>
+              <form className={styles.createEventForm}>
+                <input
+                  className={styles.textInput}
+                  type="text"
+                  name="title"
+                  value={title}
+                  placeholder={"Title"}
+                  onChange={handleChange}
+                />
+                <div className={styles.hostContainer}>
+                  <span className={styles.hostTitle}>Host</span>
+                  <div className={styles.hostList}>
+                    {checkedHostsList?.length ? (
+                      checkedHostsList.map((checkedHost) => {
+                        return (
+                          <div className={styles.hostText}>
+                            <span>{checkedHost.split(",")[1]}</span>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                  {hostConfirmed ? (
+                    <button
+                      type="button"
+                      className={styles.hostSelectButton}
+                      onClick={onClickHostRefresh}
+                    >
+                      Refresh Hosts
+                    </button>
                   ) : (
-                    <></>
+                    <button
+                      type="button"
+                      className={styles.hostSelectButton}
+                      onClick={onClickHostSelect}
+                    >
+                      Select Hosts
+                    </button>
                   )}
                 </div>
-                {hostConfirmed ? (
+
+                <div className={styles.tierContainer}>
+                  <span className={styles.tierContainerTitle}>
+                    Choose Tier:{" "}
+                  </span>
+                  <label htmlFor="tier1" className={styles.tierLabel}>
+                    Tier 1{" "}
+                  </label>
+                  <input
+                    type="checkbox"
+                    checked={tierArray[0]}
+                    name="tier1"
+                    onChange={handleTierChange}
+                  />
+                  <label htmlFor="tier2" className={styles.tierLabel}>
+                    Tier 2{" "}
+                  </label>
+                  <input
+                    type="checkbox"
+                    checked={tierArray[1]}
+                    name="tier2"
+                    onChange={handleTierChange}
+                  />
+                  <label htmlFor="tier3" className={styles.tierLabel}>
+                    Tier 3{" "}
+                  </label>
+                  <input
+                    type="checkbox"
+                    checked={tierArray[2]}
+                    name="tier3"
+                    onChange={handleTierChange}
+                  />
+                  <label htmlFor="tier4" className={styles.tierLabel}>
+                    Tier 4{" "}
+                  </label>
+                  <input
+                    type="checkbox"
+                    checked={tierArray[3]}
+                    name="tier4"
+                    onChange={handleTierChange}
+                  />
+                  <label htmlFor="others" className={styles.tierLabel}>
+                    Others{" "}
+                  </label>
+                  <input
+                    type="checkbox"
+                    checked={tierArray[4]}
+                    name="others"
+                    onChange={handleTierChange}
+                  />
+                </div>
+
+                <div className={styles.thumbnailContainer}>
+                  <input
+                    type="file"
+                    name="thumbnail"
+                    accept="image/*"
+                    onChange={handleThumbnailChange}
+                    ref={thumbnailInput}
+                    hidden
+                  />
                   <button
                     type="button"
-                    className={styles.hostSelectButton}
-                    onClick={onClickHostRefresh}
+                    onClick={onClickThumbnailUpload}
+                    className={styles.thumbnailUploadButton}
                   >
-                    Refresh Hosts
+                    {"Upload Thumbnail Image -> "}
+                  </button>
+                  <img
+                    className={styles.thumbnailImage}
+                    src={thumbnailURL}
+                    alt=""
+                  />
+                </div>
+
+                <ContentEditor value={content} onChange={setContent} />
+
+                <div className={styles.datePickers}>
+                  <div className={styles.datePickersComponent}>
+                    <label htmlFor="startDate" className={styles.dateLabel}>
+                      StartDate:
+                      <DatePickerComponent
+                        name="startDate"
+                        setDate={setStartDate}
+                      />
+                    </label>
+                  </div>
+                  <div className={styles.datePickersComponent}>
+                    <label htmlFor="endDate" className={styles.dateLabel}>
+                      EndDate:
+                      <DatePickerComponent
+                        name="endDate"
+                        setDate={setEndDate}
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                <div className={styles.participantsContainer}>
+                  <span className={styles.participantsTitle}>
+                    Participants:{" "}
+                  </span>
+                  <div>
+                    <label htmlFor="isAll">All </label>
+                    <input
+                      type="checkbox"
+                      checked={isForAll}
+                      name="isAll"
+                      onChange={handleChange}
+                    />
+                    <label htmlFor="isSignUp">Sign Up </label>
+                    <input
+                      type="checkbox"
+                      checked={!isForAll}
+                      name="isSignUp"
+                      onChange={handleChange}
+                    />
+                    {!isForAll ? (
+                      <input
+                        value={signUpLink === "None" ? "" : signUpLink}
+                        type="text"
+                        name="signUpLink"
+                        placeholder="Sign Up Link"
+                        onChange={handleChange}
+                        className={styles.signUpLink}
+                      />
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                </div>
+                {creating ? (
+                  <button
+                    className={styles.createEventSubmitButton}
+                    onClick={handleSubmit}
+                  >
+                    Creating...
                   </button>
                 ) : (
                   <button
-                    type="button"
-                    className={styles.hostSelectButton}
-                    onClick={onClickHostSelect}
+                    className={styles.createEventSubmitButton}
+                    onClick={handleSubmit}
                   >
-                    Select Hosts
+                    Create Event
                   </button>
                 )}
-              </div>
-
-              <div className={styles.tierContainer}>
-                <span className={styles.tierContainerTitle}>Choose Tier: </span>
-                <label htmlFor="tier1" className={styles.tierLabel}>
-                  Tier 1{" "}
-                </label>
-                <input
-                  type="checkbox"
-                  checked={tierArray[0]}
-                  name="tier1"
-                  onChange={handleTierChange}
-                />
-                <label htmlFor="tier2" className={styles.tierLabel}>
-                  Tier 2{" "}
-                </label>
-                <input
-                  type="checkbox"
-                  checked={tierArray[1]}
-                  name="tier2"
-                  onChange={handleTierChange}
-                />
-                <label htmlFor="tier3" className={styles.tierLabel}>
-                  Tier 3{" "}
-                </label>
-                <input
-                  type="checkbox"
-                  checked={tierArray[2]}
-                  name="tier3"
-                  onChange={handleTierChange}
-                />
-                <label htmlFor="tier4" className={styles.tierLabel}>
-                  Tier 4{" "}
-                </label>
-                <input
-                  type="checkbox"
-                  checked={tierArray[3]}
-                  name="tier4"
-                  onChange={handleTierChange}
-                />
-                <label htmlFor="others" className={styles.tierLabel}>
-                  Others{" "}
-                </label>
-                <input
-                  type="checkbox"
-                  checked={tierArray[4]}
-                  name="others"
-                  onChange={handleTierChange}
-                />
-              </div>
-
-              <div className={styles.thumbnailContainer}>
-                <input
-                  type="file"
-                  name="thumbnail"
-                  accept="image/*"
-                  onChange={handleThumbnailChange}
-                  ref={thumbnailInput}
-                  hidden
-                />
-                <button
-                  type="button"
-                  onClick={onClickThumbnailUpload}
-                  className={styles.thumbnailUploadButton}
-                >
-                  {"Upload Thumbnail Image -> "}
-                </button>
-                <img
-                  className={styles.thumbnailImage}
-                  src={thumbnailURL}
-                  alt=""
-                />
-              </div>
-
-              <ContentEditor value={content} onChange={setContent} />
-
-              <div className={styles.datePickers}>
-                <div className={styles.datePickersComponent}>
-                  <label htmlFor="startDate" className={styles.dateLabel}>
-                    StartDate:
-                    <DatePickerComponent
-                      name="startDate"
-                      setDate={setStartDate}
-                    />
-                  </label>
-                </div>
-                <div className={styles.datePickersComponent}>
-                  <label htmlFor="endDate" className={styles.dateLabel}>
-                    EndDate:
-                    <DatePickerComponent name="endDate" setDate={setEndDate} />
-                  </label>
-                </div>
-              </div>
-
-              <div className={styles.participantsContainer}>
-                <span className={styles.participantsTitle}>Participants: </span>
-                <div>
-                  <label htmlFor="isAll">All </label>
-                  <input
-                    type="checkbox"
-                    checked={isForAll}
-                    name="isAll"
-                    onChange={handleChange}
-                  />
-                  <label htmlFor="isSignUp">Sign Up </label>
-                  <input
-                    type="checkbox"
-                    checked={!isForAll}
-                    name="isSignUp"
-                    onChange={handleChange}
-                  />
-                  {!isForAll ? (
-                    <input
-                      value={signUpLink === "None" ? "" : signUpLink}
-                      type="text"
-                      name="signUpLink"
-                      placeholder="Sign Up Link"
-                      onChange={handleChange}
-                      className={styles.signUpLink}
-                    />
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              </div>
-              {creating ? (
-                <button
-                  className={styles.createEventSubmitButton}
-                  onClick={handleSubmit}
-                >
-                  Creating...
-                </button>
-              ) : (
-                <button
-                  className={styles.createEventSubmitButton}
-                  onClick={handleSubmit}
-                >
-                  Create Event
-                </button>
-              )}
-            </form>
-          </div>
-
-          {isHostSelecting ? (
-            <div className={styles.userSelectionContainer}>
-              <div className={styles.userSelectionTop}>
-                <span className={styles.userSelectionTitle}>
-                  Select Host(s)
-                </span>
-                <button
-                  type="button"
-                  className={styles.hostConfirmButton}
-                  onClick={onClickHideHostSelect}
-                >
-                  Confirm
-                </button>
-              </div>
-              <div className={styles.userSelectionBottom}>
-                {users.map((user, index) => {
-                  return (
-                    <label key={index} className={styles.userSelectText}>
-                      <input
-                        type="checkbox"
-                        value={[user.id, user.displayName]}
-                        onChange={handleHostCheck}
-                      />
-                      {user.displayName}
-                    </label>
-                  );
-                })}
-              </div>
+              </form>
             </div>
-          ) : (
-            <></>
-          )}
-        </div>
-      ) : (
-        <span> loading... </span>
-      )}
+
+            {isHostSelecting ? (
+              <div className={styles.userSelectionContainer}>
+                <div className={styles.userSelectionTop}>
+                  <span className={styles.userSelectionTitle}>
+                    Select Host(s)
+                  </span>
+                  <button
+                    type="button"
+                    className={styles.hostConfirmButton}
+                    onClick={onClickHideHostSelect}
+                  >
+                    Confirm
+                  </button>
+                </div>
+                <div className={styles.userSelectionBottom}>
+                  {users.map((user, index) => {
+                    return (
+                      <label key={index} className={styles.userSelectText}>
+                        <input
+                          type="checkbox"
+                          value={[user.id, user.displayName]}
+                          onChange={handleHostCheck}
+                        />
+                        {user.displayName}
+                      </label>
+                    );
+                  })}
+                </div>
+                <div className={styles.userSelectionInstruction}>
+                  <p>Default Host is</p>
+                  <p
+                    className={styles.userSelectionInstructionText}
+                  >{`${userContext.displayName}`}</p>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+        ) : (
+          <span> loading... </span>
+        )}
+      </div>
     </div>
   );
 }

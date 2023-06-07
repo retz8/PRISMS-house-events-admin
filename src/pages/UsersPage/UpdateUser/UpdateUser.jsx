@@ -124,6 +124,26 @@ export default function UpdateUser() {
     const { error, user } = await updateUser(userId, finalUser);
     if (error) {
       // unable to update user
+      if (
+        finalUser.role === "HouseLeader" &&
+        (finalUser.grade !== "12" || finalUser.grade !== "Faculty")
+      ) {
+        window.alert("House Leader must be in Grade 12 or Faculty");
+        return;
+      }
+
+      if (
+        finalUser.house !== "Albemarle" ||
+        finalUser.house !== "Ettl" ||
+        finalUser.house !== "Lambert" ||
+        finalUser.house !== "Hobler" ||
+        finalUser.house !== "None"
+      ) {
+        window.alert("Wrong House Name!");
+        return;
+      }
+
+      window.alert("Unable to update user!");
       return;
     }
 
@@ -131,6 +151,7 @@ export default function UpdateUser() {
     setNewUserObject(user);
     setNewProfileObj({});
     setNewProfileURL(user.profilePic.url);
+    window.alert("User updated successfully!");
   };
   // --------------------------------------------------------------
 

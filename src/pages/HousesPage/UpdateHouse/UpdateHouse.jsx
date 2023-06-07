@@ -111,6 +111,12 @@ export default function UpdateHouse() {
     e.preventDefault();
     const { name, point, crest, motto, enMotto, color } = newHouse;
 
+    if (!["Albemarle", "Ettl", "Hobler", "Lambert"].includes(name)) {
+      setNewHouse({ ...newHouse, name: house.name });
+      window.alert("You can't update house name");
+      return;
+    }
+
     let newCrest = crest;
     console.log("newCrestOBj");
     console.log(newCrestObj);
@@ -126,7 +132,7 @@ export default function UpdateHouse() {
       }
       newCrest = { url: image, public_id };
     }
-
+    console.log("check");
     const newPoint = Number(point);
 
     const finalHouse = {
@@ -141,17 +147,18 @@ export default function UpdateHouse() {
 
     console.log("Submit");
     console.log(finalHouse);
-    const { error, house } = await updateHouse(houseId, finalHouse);
+    const { error, house: upHouse } = await updateHouse(houseId, finalHouse);
 
     if (error) {
       // failed to update house
       return;
     }
 
-    setHouse(house);
-    setNewHouse(house);
-    setNewCrestObj({});
-    setNewCrestURL(house.crest?.url);
+    setHouse(upHouse);
+    setNewHouse(upHouse);
+    setNewCrestObj(null);
+    setNewCrestURL(upHouse.crest?.url);
+    window.alert("House updated successfully!");
   };
 
   // const { name, point, motto, enMotto, color } = newHouse;
