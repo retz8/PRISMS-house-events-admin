@@ -134,10 +134,10 @@ export default function UpdateUser() {
       }
 
       if (
-        finalUser.house !== "Albemarle" ||
-        finalUser.house !== "Ettl" ||
-        finalUser.house !== "Lambert" ||
-        finalUser.house !== "Hobler" ||
+        finalUser.house !== "Albemarle" &&
+        finalUser.house !== "Ettl" &&
+        finalUser.house !== "Lambert" &&
+        finalUser.house !== "Hobler" &&
         finalUser.house !== "None"
       ) {
         window.alert("Wrong House Name!");

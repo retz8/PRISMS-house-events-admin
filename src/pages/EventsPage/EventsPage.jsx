@@ -161,6 +161,8 @@ export default function EventsPage() {
           year: "numeric",
           month: "short",
           day: "numeric",
+          hour: "numeric",
+          minute: "numeric",
         }),
     },
     {
