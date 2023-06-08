@@ -124,14 +124,13 @@ export default function UpdateUser() {
     const { error, user } = await updateUser(userId, finalUser);
     if (error) {
       // unable to update user
-      if (finalUser.role === "HouseLeader") {
-        if (finalUser.grade !== "12") {
-          window.alert("Grade must be 12");
-          return;
-        } else if (finalUser.grade !== "Faculty") {
-          window.alert("Grade must be Faculty");
-          return;
-        }
+      if (finalUser.role === "HouseLeader" && finalUser.grade !== "Faculty") {
+        window.alert("Grade must be Faculty");
+        return;
+      }
+      if (finalUser.role === "HouseLeader" && finalUser.grade !== "12") {
+        window.alert("Grade must be 12");
+        return;
       }
 
       if (
